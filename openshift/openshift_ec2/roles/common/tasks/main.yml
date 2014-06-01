@@ -1,6 +1,12 @@
 ---
 # Common tasks across nodes
 
+- name: Gather facts
+  action: ec2_facts
+
+- name: IP address?
+  debug: msg="{{ hostvars[inventory_hostname]['ansible_ec2_public_ipv4'] }}"
+
 - name: Install common packages
   yum : name={{ item }} state=installed
   with_items:

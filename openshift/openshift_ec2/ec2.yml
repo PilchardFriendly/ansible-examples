@@ -29,32 +29,38 @@
    - debug: msg="{{ groups }}"
  
 - hosts: all:!localhost
-  user: root
+  user: ec2-user
+  sudo: True
   roles:
       - role: common
 
 - hosts: dns
-  user: root
+  user: ec2-user
+  sudo: True
   roles:
       - role: dns
 
 - hosts: mongo_servers
-  user: root
+  user: ec2-user
+  sudo: True
   roles:
       - role: mongodb
 
 - hosts: mq
-  user: root
+  user: ec2-user
+  sudo: True
   roles:
       - role: mq
 
 - hosts: broker
-  user: root
+  user: ec2-user
+  sudo: True
   roles:
    - role: broker
 
 - hosts: nodes
-  user: root
+  user: ec2-user
+  sudo: True
   roles:
    - role: nodes
 

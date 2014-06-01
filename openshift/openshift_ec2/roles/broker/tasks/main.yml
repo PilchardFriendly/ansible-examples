@@ -2,7 +2,7 @@
 # Tasks for the Openshift broker installation
 
 - name: Install mcollective
-  yum: name=mcollective-client
+  yum: name=mcollective-client disablerepo=epel
 
 - name: Copy the mcollective configuration file
   template: src=client.cfg.j2 dest=/etc/mcollective/client.cfg

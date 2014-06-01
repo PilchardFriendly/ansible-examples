@@ -2,7 +2,7 @@
 # Tasks for the openshift nodes
 
 - name: Install the mcollective packages
-  yum: name=openshift-origin-msg-node-mcollective state=installed
+  yum: name=openshift-origin-msg-node-mcollective state=installed disablerepo=epel
 
 - name: Copy the mcollective configuration file
   template: src=server.cfg.j2 dest=/etc/mcollective/server.cfg
@@ -88,6 +88,9 @@
 - name: start the port proxy service
   service: name=openshift-port-proxy state=started enabled=yes
 
+- name: start the web proxy service
+  service: name=openshift-node-web-proxy state=started enabled=yes
+
 - name: Copy the node.conf file
   template: src=node.conf.j2 dest=/etc/openshift/node.conf
 
@@ -104,4 +107,6 @@
 
 - name: copy the resolv.conf file
   template: src=resolv.conf.j2 dest=/etc/resolv.conf
+  notify: restart mcollective
+
 
