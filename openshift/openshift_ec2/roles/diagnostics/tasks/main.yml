@@ -1,0 +1,10 @@
+---
+# tasks to check installation
+
+- name: Detect diagnostics
+  stat: path=/usr/sbin/oo-diagnostics
+  register: oo_diagnostics_stat
+
+- name: Run OpenShift diagnostics
+  shell: /usr/sbin/oo-diagnostics -v
+  when:  oo_diagnostics_stat.stat.exists
