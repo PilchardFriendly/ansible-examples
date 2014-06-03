@@ -1,6 +1,9 @@
 ---
 # Tasks for the Openshift broker installation
 
+- name: Install systemu
+  yum: name=rubygem-systemu
+
 - name: Install mcollective
   yum: name=mcollective-client disablerepo=epel
 

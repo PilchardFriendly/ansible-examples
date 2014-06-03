@@ -5,7 +5,7 @@ PUBLIC_IP="{{ ansible_ec2_public_ipv4 }}"                                       
 BROKER_HOST="{{ groups['broker'][0] }}"                                      # IP or DNS name of broker server for REST API
 
 # Usually (unless in a demo) this should be changed to the domain for your installation:
-CLOUD_DOMAIN="example.com"                                  # Domain suffix to use for applications (Must match broker config)
+CLOUD_DOMAIN="{{domain_name}}"                               # Domain suffix to use for applications (Must match broker config)
 
 # You may want these, depending on the complexity of your networking:
 # EXTERNAL_ETH_DEV='eth0'                                    # Specify the internet facing public ethernet device

@@ -1,5 +1,10 @@
 ---
 # Tasks for the openshift nodes
+- name: Install systemu
+  yum: name=rubygem-systemu
+
+- name: Install mcollective
+  yum: name=mcollective-client disablerepo=epel
 
 - name: Install the mcollective packages
   yum: name=openshift-origin-msg-node-mcollective state=installed disablerepo=epel
@@ -17,7 +22,6 @@
       - rubygem-openshift-origin-node 
       - rubygem-openshift-origin-container-selinux.noarch
       - rubygem-passenger-native 
-      - rubygem-openshift-origin-msg-broker-mcollective
       - openshift-origin-port-proxy 
       - openshift-origin-node-util
       - openshift-origin-cartridge-cron
@@ -26,6 +30,12 @@
       - httpd
       - lsof
       - dbus
+
+- name: Install CDK dependencies
+  yum: name="{{ item }}" state=installed
+  with_items:
+      - ruby193-ruby-devel
+      - openssl-devel
 
 - name: Copy the ssh authorized key for root
   authorized_key: user=root key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
