@@ -15,7 +15,8 @@ zone: "ap-southeast-2a"
 
 iface: '{{ ansible_default_ipv4.interface }}'
 
-domain_name: '{{ id }}.datadev-tw.net'
+cloud_domain: 'datadev-tw-net'
+domain_name: '{{ id }}.{{cloud_domain}}'
 dns_port: 53
 rndc_port: 953
 dns_key: "YG70pT2h9xmn9DviT+E6H8MNlJ9wc7Xa9qpCOtuonj3oLJGBBA8udXUsJnoGdMSIIw2pk9lw9QL4rv8XQNBRLQ=="
